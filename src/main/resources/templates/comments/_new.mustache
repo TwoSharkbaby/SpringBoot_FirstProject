@@ -1,0 +1,54 @@
+<div class="card m-2" id="comments-new">
+    <div class="card-body">
+        <!-- 댓글 작성 폼-->
+        <form>
+            <!-- 닉네임 입력 -->
+            <div class="mb-3">
+                <label class="form-label">닉네임</label>
+                <input type="text" class="form-control form-control-sm" id="new-comment-nickname">
+            </div>
+            <!-- 댓글 본문 입력 -->
+            <div class="mb-3">
+                <label class="form-label">댓글 내용</label>
+                <textarea type="text" class="form-control form-control-sm" rows="3" id="new-comment-body"></textarea>
+            </div>
+            <!-- 히든 인풋 -->
+            {{#article}}
+                <input type="hidden" id="new-comment-article-id" value="{{id}}">
+            {{/article}}
+            <!-- 전송 버튼 -->
+            <button type="button" class="btn btn-outline-primary btn-sm" id="comment-create-btn">댓글 작성</button>
+        </form>
+    </div>
+</div>
+
+<script>
+{
+   const commentCreateBtn = document.querySelector("#comment-create-btn");  //  버튼 변수화
+
+   commentCreateBtn.addEventListener("click", function(){  // 버튼 이벤트 감지
+     const comment = {  // 덧글 객체 생성
+       nickname: document.querySelector("#new-comment-nickname").value,
+       body: document.querySelector("#new-comment-body").value,
+       article_id: document.querySelector("#new-comment-article-id").value
+    };
+
+       console.log(comment);
+
+       const url = "/api/articles/" + comment.article_id + "/comments";  // fetch() 비동기 통신을 위한 api
+       fetch(url, {
+         method: "post",  // post 요청
+         body: JSON.stringify(comment),  // comment JS 객체를 JSON으로 변경해서 바디 전달
+         headers: {
+            "Content-Type": "application/json" // 해더에 이건 제이슨 타입이라고 명시
+            }
+       }).then(response => { // 해당 fetch 응답에 따른 상황 대처
+        const msg = (response.ok) ? "덧글이 등록되었습니다." : "덧글 등록 실패..!";
+        alert(msg);
+        window.location.reload(); // 새로고침
+       });
+  });
+}
+
+
+</script>

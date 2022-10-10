@@ -1,0 +1,24 @@
+{{>layouts/header}}  <!-- 레이아웃 -->
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#articleList}} <!-- 데이터가 다수일 경우 반복 -->
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="/articles/{{id}}">{{title}}</a></td>
+            <td>{{content}}</td>
+        </tr>
+    {{/articleList}}
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="/articles/new">NEW ARTICLE</a>
+
+{{>layouts/footer}} <!-- 레이아웃 -->

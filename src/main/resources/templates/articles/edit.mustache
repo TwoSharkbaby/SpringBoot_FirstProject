@@ -1,0 +1,18 @@
+{{>layouts/header}}  <!-- 레이아웃 -->
+
+{{#article}}
+<form class="container mt-3 mb-3" method="post" action="/articles/update">
+    <input name="id" type="hidden" value="{{id}}"/>  <!-- id값을 넘겨주기 위하여 화면에는 필요없으니 숨겨둠 -->
+    <div class="mb-3">
+        <label class="form-label">제목</label>
+        <input type="text" class="form-control" name="title" value="{{title}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">내용</label>
+        <textarea class="form-control" rows="3" name="content">{{content}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a class="btn btn-primary" href="/articles/{{article.id}}">BACK</a>
+</form>
+{{/article}}
+{{>layouts/footer}} <!-- 레이아웃 -->
