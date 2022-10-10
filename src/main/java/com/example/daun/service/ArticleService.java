@@ -31,6 +31,9 @@ public class ArticleService {
         if (article.getId() != null){ // 새로 만드는건데 기존에 있는 아이디 수정 방지
             return null;
         }
+        if (article.getTitle() == null || article.getContent() == null){
+            return null;
+        }
         return articleRepository.save(article);
     }
 
