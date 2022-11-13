@@ -13,8 +13,8 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly 'org.postgresql:postgresql'
-    //runtimeOnly 'com.oracle.database.jdbc:ojdbc8' 오라클용
+    //runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

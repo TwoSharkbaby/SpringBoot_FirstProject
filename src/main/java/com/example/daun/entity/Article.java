@@ -10,10 +10,19 @@ import javax.persistence.*;
 @ToString // lombok tostring
 @Getter // lombok 게터
 @Setter
+@SequenceGenerator(
+    name = "USER_SEQ_GEN1",
+    sequenceName = "SEQUENCE1",
+    initialValue = 1,
+    allocationSize = 1
+)
 public class Article {
 
   @Id  // 대표값
-  @GeneratedValue(strategy = GenerationType.IDENTITY) // db가 id를 자동 생성
+  @GeneratedValue(
+      strategy = GenerationType.SEQUENCE,
+      generator = "USER_SEQ_GEN1"
+  )
   private Long id;
 
   @Column // db 컬럼

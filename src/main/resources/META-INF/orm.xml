@@ -5,16 +5,44 @@
                                      https://jakarta.ee/xml/ns/persistence/orm/orm_3_0.xsd"
                  version="3.0">
     <named-native-query
-            name="Comment.findByNickname"
-            result-class="com.example.daun.entity.Comment">
+            name="Comment1.findByNickname"
+            result-class="com.example.daun.entity.Comment1">
         <query>
             <![CDATA[
                 SELECT
                     *
                 FROM
-                    comment
+                    comment1
                 WHERE
                     nickname = :nickname
+            ]]>
+        </query>
+    </named-native-query>
+    <named-native-query
+            name="Comment1.findByArticleId"
+            result-class="com.example.daun.entity.Comment1">
+        <query>
+            <![CDATA[
+                SELECT
+                    *
+                FROM
+                    comment1
+                WHERE
+                    article_id = :articleId
+            ]]>
+        </query>
+    </named-native-query>
+    <named-native-query
+            name="Comment1.findByNicknameWith"
+            result-class="com.example.daun.entity.Comment1">
+        <query>
+            <![CDATA[
+                SELECT
+                    *
+                FROM
+                    comment1
+                WHERE
+                    nickname LIKE '%i%'
             ]]>
         </query>
     </named-native-query>

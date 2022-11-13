@@ -11,6 +11,7 @@ import lombok.*;
 @Setter
 public class ArticleFrom {
 
+
     private Long id;
     private String title;
     private String content;

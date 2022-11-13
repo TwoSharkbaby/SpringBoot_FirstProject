@@ -13,10 +13,19 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Comment {
+@SequenceGenerator(
+    name = "USER_SEQ_GEN2",
+    sequenceName = "SEQUENCE2",
+    initialValue = 1,
+    allocationSize = 1
+)
+public class Comment1 {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "USER_SEQ_GEN2"
+    )
     private Long id;
 
     @ManyToOne // 해당 댓글 엔티티 여러개가 하나의 Article에 연결 ( 관계설정 )
@@ -29,14 +38,14 @@ public class Comment {
     @Column
     private String body;
 
-    public static Comment createCommnet(CommentDto dto, Article article) {
+    public static Comment1 createCommnet(CommentDto dto, Article article) {
         if (dto.getId() != null){
             throw new IllegalArgumentException("덧글 생성 실패! 덧글의 id가 없어야 합니다.");
         }
         if (dto.getArticleId() != article.getId()) {
             throw new IllegalArgumentException("덧글 생성 실패! 게시글의 id가 잘못되었습니다");
         }
-        return new Comment(
+        return new Comment1(
             dto.getId(),
             article,
             dto.getNickname(),

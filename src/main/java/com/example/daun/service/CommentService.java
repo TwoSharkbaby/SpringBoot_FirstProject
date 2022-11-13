@@ -2,7 +2,7 @@ package com.example.daun.service;
 
 import com.example.daun.dto.CommentDto;
 import com.example.daun.entity.Article;
-import com.example.daun.entity.Comment;
+import com.example.daun.entity.Comment1;
 import com.example.daun.repository.ArticleRepository;
 import com.example.daun.repository.CommentRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -42,23 +42,23 @@ public class CommentService {
     public CommentDto create(Long articleId, CommentDto dto) {
         Article article = articleRepository.findById(articleId)
             .orElseThrow(() -> new IllegalArgumentException("댓글 생성 실패! 대상 게시글이 없습니다")); // articleid가 없으면 예외처리
-        Comment comment = Comment.createCommnet(dto, article); // 댓글 엔티티 생성
-        Comment created = commentRepository.save(comment); // db로 저장
+        Comment1 comment = Comment1.createCommnet(dto, article); // 댓글 엔티티 생성
+        Comment1 created = commentRepository.save(comment); // db로 저장
         return CommentDto.createCommentDto(comment); // dto로 변경해서 반환
     }
 
     @Transactional
     public CommentDto update(Long id, CommentDto dto) {
-        Comment target = commentRepository.findById(id)
+        Comment1 target = commentRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("댓글 수정 실패! 대상 댓글이 없습니다"));
         target.patch(dto);
-        Comment updated = commentRepository.save(target);
+        Comment1 updated = commentRepository.save(target);
         return CommentDto.createCommentDto(updated);
     }
 
     @Transactional
     public CommentDto delete(Long id) {
-        Comment tatget = commentRepository.findById(id)
+        Comment1 tatget = commentRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("덧글 삭제 실패! 대상 댓글이 없습니다"));
         commentRepository.delete(tatget);
         return CommentDto.createCommentDto(tatget);

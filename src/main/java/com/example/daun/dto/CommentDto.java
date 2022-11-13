@@ -1,6 +1,6 @@
 package com.example.daun.dto;
 
-import com.example.daun.entity.Comment;
+import com.example.daun.entity.Comment1;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class CommentDto {
     private String nickname;
     private String body;
 
-    public static CommentDto createCommentDto(Comment comment) {
+    public static CommentDto createCommentDto(Comment1 comment) {
         return new CommentDto(
             comment.getId(),
             comment.getArticle().getId(),
